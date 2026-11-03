@@ -3,7 +3,7 @@
 script_dir=$(cd $(dirname "${BASH_SOURCE[0]}"); pwd)
 
 setup() {
-    cd $script_dir/module_rust_sudoku
+    cd $script_dir/rust_sudoku
     mkdir clang-$1
     rustup toolchain install $2
     rustup default $2
@@ -12,8 +12,10 @@ setup() {
     cp target/release/libsudoku.so clang-$1
 }
 
-setup 8  1.35.0-x86_64-unknown-linux-gun
-setup 9  1.38.0-x86_64-unknown-linux-gnu
-setup 10 1.45.0-x86_64-unknown-linux-gnu
-setup 11 1.47.0-x86_64-unknown-linux-gnu
-setup 18 1.75.0-x86_64-unknown-linux-gnu
+# setup 8  1.35.0-x86_64-unknown-linux-gun
+# setup 9  1.38.0-x86_64-unknown-linux-gnu
+# setup 10 1.45.0-x86_64-unknown-linux-gnu
+# setup 11 1.47.0-x86_64-unknown-linux-gnu
+# setup 18 1.75.0-x86_64-unknown-linux-gnu
+# setup 18 1.99.1-x86_64-unknown-linux-gnu
+setup 18 stable-x86_64-unknown-linux-gnu

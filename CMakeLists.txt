@@ -38,6 +38,13 @@ option(LHL           "Include lhl_sudoku"    OFF)
 option(RUST_SUDOKU   "Include rust_sudoku"   ON)
 option(SK_BFORCE2    "Include SK_BFORCE2"    OFF)
 
+get_filename_component(CCOMPILER "$ENV{CC}" NAME)
+if (EXISTS "${CMAKE_SOURCE_DIR}/other/rust_sudoku/${CCOMPILER}/libsudoku.so")
+    set(HAVE_RUST_SUDOKU_LIB ON)
+else()
+    set(HAVE_RUST_SUDOKU_LIB OFF)
+endif()
+
 if (NOT MSVC)
     ## For C_FLAGS
     set(CMAKE_C_FLAGS_DEFAULT "${CMAKE_C_FLAGS} -std=c99 -march=native -Wall -Wno-unused-function -Wno-deprecated-declarations -Wno-unused-variable -fPIC")
@@ -82,9 +89,11 @@ configure_file (
 add_library(tdoku STATIC src/solver_dpll_triad_simd.cc src/util.cc)
 target_compile_options(tdoku PUBLIC -fno-exceptions -fno-rtti -fpic)
 
+if (RUST_SUDOKU)
 add_library(rust_sudoku SHARED IMPORTED)
 set_target_properties(rust_sudoku PROPERTIES IMPORTED_LOCATION
         ${CMAKE_SOURCE_DIR}/other/rust_sudoku/libsudoku.so)
+endif()
 
 set(GUROBI_DIR "gurobi900/linux64" CACHE STRING "Gurobi installation directory")
 

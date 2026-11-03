@@ -16,3 +16,4 @@ setup 8  1.35.0-x86_64-unknown-linux-gun
 setup 9  1.38.0-x86_64-unknown-linux-gnu
 setup 10 1.45.0-x86_64-unknown-linux-gnu
 setup 11 1.47.0-x86_64-unknown-linux-gnu
+setup 18 1.75.0-x86_64-unknown-linux-gnu

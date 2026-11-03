@@ -5,6 +5,8 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <stddef>
+#include <stdint>
 #else
 #include <stddef.h>
 #include <stdint.h>
